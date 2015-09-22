@@ -435,7 +435,7 @@ class Solver {
 			{
 				counter = Math.min(l,1000);
 				if(shrinking!=0) do_shrinking();
-				System.err.print(".");
+				//System.err.print(".");
 			}
 
 			if(select_working_set(working_set)!=0)
@@ -444,7 +444,7 @@ class Solver {
 				reconstruct_gradient();
 				// reset active set size and check
 				active_size = l;
-				System.err.print("*");
+				//System.err.print("*");
 				if(select_working_set(working_set)!=0)
 					break;
 				else
