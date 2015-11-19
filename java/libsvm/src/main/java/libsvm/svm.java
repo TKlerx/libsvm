@@ -1736,6 +1736,11 @@ public class svm {
 		if (iter>=max_iter)
 			System.err.print("Exceeds max_iter in multiclass_prob\n");
 	}
+	static Random rand = new Random();
+	
+	public static void setRandom(Random rand) {
+		svm.rand = rand;
+	}
 
 	// Cross-validation decision values for probability estimates
 	private static void svm_binary_svc_probability(svm_problem prob, svm_parameter param, double Cp, double Cn, double[] probAB)
@@ -1749,7 +1754,7 @@ public class svm {
 		for(i=0;i<prob.l;i++) perm[i]=i;
 		for(i=0;i<prob.l;i++)
 		{
-			int j = i+(int)(Math.random()*(prob.l-i));
+			int j = i+(int)(rand.nextDouble()*(prob.l-i));
 			do {int _=perm[i]; perm[i]=perm[j]; perm[j]=_;} while(false);
 		}
 		for(i=0;i<nr_fold;i++)
@@ -2172,7 +2177,7 @@ public class svm {
 			for (c=0; c<nr_class; c++)
 				for(i=0;i<count[c];i++)
 				{
-					int j = i+(int)(Math.random()*(count[c]-i));
+					int j = i+(int)(rand.nextDouble()*(count[c]-i));
 					do {int _=index[start[c]+j]; index[start[c]+j]=index[start[c]+i]; index[start[c]+i]=_;} while(false);
 				}
 			for(i=0;i<nr_fold;i++)
@@ -2204,7 +2209,7 @@ public class svm {
 			for(i=0;i<l;i++) perm[i]=i;
 			for(i=0;i<l;i++)
 			{
-				int j = i+(int)(Math.random()*(l-i));
+				int j = i+(int)(rand.nextDouble()*(l-i));
 				do {int _=perm[i]; perm[i]=perm[j]; perm[j]=_;} while(false);
 			}
 			for(i=0;i<=nr_fold;i++)
