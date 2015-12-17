@@ -4,8 +4,14 @@
 
 
 package libsvm;
-import java.io.*;
-import java.util.*;
+import java.io.BufferedOutputStream;
+import java.io.BufferedReader;
+import java.io.DataOutputStream;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Random;
+import java.util.StringTokenizer;
 
 //
 // Kernel Cache
@@ -1294,7 +1300,7 @@ public class svm {
 	// construct and solve various formulations
 	//
 	public static final int LIBSVM_VERSION=321; 
-	public static final Random rand = new Random();
+	public static Random rand = new Random();
 
 	private static svm_print_interface svm_print_stdout = new svm_print_interface()
 	{
@@ -2845,5 +2851,8 @@ public class svm {
 			svm_print_string = svm_print_stdout;
 		else 
 			svm_print_string = print_func;
+	}
+	public static void setRandom(Random nextRandom) {
+		rand = nextRandom;
 	}
 }
