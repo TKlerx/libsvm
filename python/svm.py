@@ -5,6 +5,9 @@ from ctypes.util import find_library
 from os import path
 import sys
 
+if sys.version_info[0] >= 3:
+	xrange = range
+
 __all__ = ['libsvm', 'svm_problem', 'svm_parameter',
            'toPyModel', 'gen_svm_nodearray', 'print_null', 'svm_node', 'C_SVC',
            'EPSILON_SVR', 'LINEAR', 'NU_SVC', 'NU_SVR', 'ONE_CLASS',
@@ -146,8 +149,8 @@ class svm_parameter(Structure):
 		self.shrinking = 1
 		self.probability = 0
 		self.nr_weight = 0
-		self.weight_label = (c_int*0)()
-		self.weight = (c_double*0)()
+		self.weight_label = None
+		self.weight = None
 		self.cross_validation = False
 		self.nr_fold = 0
 		self.print_func = cast(None, PRINT_STRING_FUN)
@@ -213,7 +216,6 @@ class svm_parameter(Structure):
 			elif argv[i].startswith("-w"):
 				i = i + 1
 				self.nr_weight += 1
-				nr_weight = self.nr_weight
 				weight_label += [int(argv[i-1][2:])]
 				weight += [float(argv[i])]
 			else:

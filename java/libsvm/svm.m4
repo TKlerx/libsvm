@@ -2,7 +2,7 @@ define(`swap',`do {$1 _=$2; $2=$3; $3=_;} while(false)')
 define(`Qfloat',`float')
 define(`SIZE_OF_QFLOAT',4)
 define(`TAU',1e-12)
-changecom(`//', )
+changecom(`//',`')
 package libsvm;
 import java.io.*;
 import java.util.*;
@@ -761,7 +761,7 @@ class Solver {
 			}
 		}
 
-		if(Gmax+Gmax2 < eps)
+		if(Gmax+Gmax2 < eps || Gmin_idx == -1)
 			return 1;
 
 		working_set[0] = Gmax_idx;
@@ -1007,7 +1007,7 @@ final class Solver_NU extends Solver
 			}
 		}
 
-		if(Math.max(Gmaxp+Gmaxp2,Gmaxn+Gmaxn2) < eps)
+		if(Math.max(Gmaxp+Gmaxp2,Gmaxn+Gmaxn2) < eps || Gmin_idx == -1)
 			return 1;
 	
 		if(y[Gmin_idx] == +1)
@@ -1293,7 +1293,7 @@ public class svm {
 	//
 	// construct and solve various formulations
 	//
-	public static final int LIBSVM_VERSION=320; 
+	public static final int LIBSVM_VERSION=321; 
 	public static final Random rand = new Random();
 
 	private static svm_print_interface svm_print_stdout = new svm_print_interface()
