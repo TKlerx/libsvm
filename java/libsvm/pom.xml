@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>de.upb.timok</groupId>
 	<artifactId>libsvm</artifactId>
-	<version>3.22-SNAPSHOT</version>
+	<version>3.22</version>
 	<build>
 		<plugins>
 			<plugin>
